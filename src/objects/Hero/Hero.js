@@ -9,6 +9,7 @@ import { Animations } from "../../Animations";
 import { FrameIndexPattern } from "../../FrameIndexPattern";
 import { WALK_DOWN, WALK_LEFT, WALK_RIGHT, WALK_UP, STAND_DOWN, STAND_UP, STAND_LEFT, STAND_RIGHT } from "./heroAnimations";
 import { moveTowards } from "../../helpers/moveTowards";
+import { events } from "../../Events";
 
 export class Hero extends GameObject {
     constructor(x, y){
@@ -52,6 +53,18 @@ export class Hero extends GameObject {
         if(hasArrived){
           this.tryMove(root)
         }
+
+        this.tryEmitPosition();
+    }
+
+    tryEmitPosition() {
+        if(this.lastX === this.position.x && this.lastY === this.position.y) {
+            return;
+        }
+
+        this.lastX = this.position.x;
+        this.lastY = this.position.y;
+        events.emit("HERO_POSITION", this.position)
     }
 
     tryMove(root) {
