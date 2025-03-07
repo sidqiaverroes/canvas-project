@@ -1,0 +1,15 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+canvas {
+  width: 100%;
+  background-color: blue;
+}
